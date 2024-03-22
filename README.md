@@ -1,2 +1,2 @@
 # ddia-notes
-Notes taken while reading through Designing Data-Intensive Applications.
+Notes taken while reading through [Designing Data-Intensive Applications](https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/).
