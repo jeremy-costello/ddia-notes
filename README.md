@@ -3,3 +3,8 @@ Notes taken while reading through [Designing Data-Intensive Applications](https:
 
 ## References
 The book provides continuously-updated references in this [GitHub repo](https://https@github.com/ept/ddia-references).
+
+## Overview
+
+### Part I
+Fundamental ideas that apply to all data systems.
