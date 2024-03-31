@@ -18,7 +18,7 @@ Three important concerns:
 2. Scalability - system can deal with growth
 3. Maintainability - easy to maintain current behaviour and adapt to new use cases
 
-#### Reliability
+## Reliability
 - Error handling
 - Purposely trigger faults
     - e.g. Netflix's chaos monkey
@@ -32,7 +32,7 @@ Three important concerns:
 - Human errors
     - Minimize opportunities for error, sandbox environments for experimenting, thorough automated testing, quick and easy recovery, detailed and clear monitoring, good management practices and training
 
-#### Scalability
+## Scalability
 - A system's ability to cope with increased load
 - Describing load
     - Requests per second, read/write ratio, active users
@@ -52,7 +52,7 @@ Three important concerns:
     - assumptions of which operations will be common and which will be rare
     - application architectures are unique, but built from familiar blocks
 
-#### Maintainability
+## Maintainability
 - Three design principles
     - operability: easy to keep the system running smoothly
     - simplicity: easy to understand the system
