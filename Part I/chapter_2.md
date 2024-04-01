@@ -62,6 +62,37 @@ Schema-on-read (NoSQL) is advantageous if items in the collection don't have the
 
 Documents are usually stored as a single string, so the whole document can be accessed at once. If large parts of the document are needed, this will be more efficient than accessing the document split across multiple tables in a relational database. Updates also require rewriting the whole document, so it is recommended to keep documents small. Locality is not limited to the document model, but also available in Google's Spanner database, Oracle (multie-table index cluster tables), and Cassandra/HBase (column-family concept).
 
-Document and relational databases are converging in some aspects. Most relational database systems (other than MySQL) support XML, so applications using these systems can use data models similar to document models. PostgreSQL, MySQL, and IBM DB2 also suport JSON. Some document databases support joins in their query languages (e.g. RethinkDB), and some have slightly less efficient workarounds for joins (e.g. MongoDB).
+Document and relational databases are converging in some aspects. Most relational database systems (other than MySQL) support XML, so applications using these systems can use data models similar to document models. PostgreSQL, MySQL, and IBM DB2 also support JSON. Some document databases support joins in their query languages (e.g. RethinkDB), and some have slightly less efficient workarounds for joins (e.g. MongoDB).
 
 ## Query Languages for Data
+SQL is a declarative query language. It follows the structure of relational algebra fairly closely. You specify the pattern of the data you want; the query optimizer decides how to achieve that goal. The limited nature of declarative languages gives the database more room for automatic optimizations than imperative languages would. Declarative languages are often better for parallel execution as well.
+
+### Declarative Queries on the Web
+CSS is also a declarative language. Using CSS is better than using JavaScript for styling, just like how SQL is better than imperative query APIs.
+
+### MapReduce Querying
+MapReduce is a programming model for processing large amounts of data in bulk across many machines. A limited form of MapReduce is support by some NoSQL datastores (e.g. MongoDB, CouchDB). MapReduce is between declarative and imperative. It is based on the "map" and "reduce" functions that exist in many functional programming languages. The "map" and "reduce" functions must be pure functions; they cannot perform additional database queries. SQL can be implemented as a pipeline of MapReduce operations.
+
+Some SQL databases can be extended with JavaScript functions. MapReduce requires two carefully coordinated JavaScript functions. MongoDB has a declarative query language called the aggregation pipeline that is similar in expressiveness to a subset of SQL.
+
+## Graph-Like Data Models
+If your application has mostly one-to-many relationships (tree-structured data) or no relationships between records, the document model is appropriate.
+
+If many-to-many relationships are very common in your data, the graph model is more appropriate. Graphs consists of vertices (i.e. nodes/entities) and edges (i.e. relationships/arcs). Well-known algorithms can operate on these graphs (e.g. shortest path, PageRank) Vertices don't have to be the same data object; they can represent many different data objects. Same with edges.
+
+Two popular graph models are the property graph model (Neo4j, Titan, InfiniteGraph) and the triple-store model (Datomic, AllegroGraph, others).
+
+### Property Graphs
+Vertices consist of: unique ID, outgoing edges, incoming edges, properties (key-value pairs)
+Edges consist of: unique ID, tail vertex, head vertex, relationship label, properties (key-value pairs)
+
+You can view a graph store as two relational tables: one for vertices and one for edges.
+
+Some important aspects of property graphs:
+1. Any vertex can have an edge connecting it with any other vertex.
+2. Can efficiently find incoming and outgoing edges for each vertex.
+3. Can store several different kinds of information in a single graph.
+
+Graphs are very flexible. Examples are different kinds of regional structures in different countries, quirks of history such as a country within a country, and varying granularity of data. Graphs are also good for evolvability; they can be easily extended.
+
+### The Cypher Query Language
