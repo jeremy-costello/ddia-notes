@@ -96,3 +96,22 @@ Some important aspects of property graphs:
 Graphs are very flexible. Examples are different kinds of regional structures in different countries, quirks of history such as a country within a country, and varying granularity of data. Graphs are also good for evolvability; they can be easily extended.
 
 ### The Cypher Query Language
+Cypher is a declarative query language for property graphs, created for Neo4j. You can query based on incoming edges, outgoing edges, tail vertices, head vertices, relationship labels, properties, or some combination of all of the above. Cypher has a query optimizer like SQL.
+
+### Graph Queries in SQL
+Graph data can be represented in a relational database, but it will be much more difficult to query. Relational databases require a known number of joins, while graph databases can traverse a variable number of edges. SQL has added variable-length traversal paths (recursive common table expressions), however the syntax is clumsy in comparison to Cypher.
+
+### Triple-Stores and SPARQL
+The triple-store model is mostly equivalent to the property graph model, using different words to describe the same ideas. In a triple-store, all information is stored as a triple of (subject, predicate, object).
+
+Equivalencies to the property graph model are:
+1. Subject is a (head) vertex.
+2. Predicate and object are the key and value of a property on the subject vertex.
+2. Predicate and object are the relational label of the connecting edge and a (head) vertex.
+
+Turtle is one format for representing triples.
+
+The semantic web is the idea that websites should publish information as machine-readable data for computers. The Resource Description Framework (RDF) was an intended format for this machine-readable data. The semantic web is far from being realized in practice. RDF can be written in Turtle or XML, and tools like Apache Jena can convert between different RDF formats. The subject, predicate, and object in RDF triples are usually URIs. SPARQL is a query language for triple-stores using RDF. It is quite similar to Cypher.
+
+### The Foundation: Datalog
+Datalog is a language from the 1980s which provided the foundation for SPARQL and Cypher. It is the query language of Datomic, and Cascalog is a Datalog implementation for querying large datasets in Hadoop. Triples in Datalog are written as predicate(subject, object). Datalog allows the definition of reusable rules, which makes it better for complex data but less convenient for simple one-off queries.
